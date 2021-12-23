@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CategoryController;
 use App\Models\User;
 
 /*
@@ -37,7 +38,13 @@ Route::get('/about', function () {
 
 
 //this is laravel 8
-Route::get('/contact', [ContactController::class, 'index']);
+Route::get('/contact', [ContactController::class, 'index'])->name('ariyan');
+
+//category Controller 
+Route::get('/category/all', [CategoryController::class, 'AllCat'])->name('all.category');
+
+Route::post('/category/add', [CategoryController::class, 'AddCat'])->name('store.category');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     // look in the models 
