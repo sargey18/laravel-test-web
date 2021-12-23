@@ -12,34 +12,49 @@
 
                 <div class="col-md-8">
                     <div class="card">
+
+                        @if(session('success'))
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>{{ session('success') }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                          @endif
                         <div class="card-header">All category </div>
 >
                 <table class="table">
                     <thead>
                       <tr>
                         <th scope="col">SL No</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
+                        <th scope="col">Category Name</th>
+                        <th scope="col">User</th>
                         <th scope="col">Created At</th>
                       </tr>
                     </thead>
                     <tbody>
 
                         <!-- loop through each from the users data-->
-
-                            
+                            <!-- @php($i = 1) -->
+                            @foreach($categories as $category)
                       <tr>
-                          <!-- the i++ will loop through -->
-                        <th scope="row"> </th>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
+                        <th scope="row"> {{ $categories->firstItem()+$loop->index   }}</th>
+                        <td> {{ $category->category_name }}</td>
+                        <td>{{ $category->name }}  </td>
+
+                        <td> 
+                            @if($category->created_at == NULL)
+                            <span class="text-danger">No Date Set</span>
+                            @else
+                            {{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }} 
+                            @endif
+                        
+                        </td>
                                                     <!-- function to change the sate-->
                     </tr>
-                      
+                      @endforeach
                     </tbody>
                   </table>
-
+                  <!--next page pagination -->
+                  {{ $categories->links() }}
                 </div>
             </div>
 

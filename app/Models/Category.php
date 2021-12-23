@@ -13,4 +13,12 @@ class Category extends Model
         'user_id',
         'category_name',
     ];
+
+    // public function user(){
+    //     // this links the ideas from the two tables 
+    //     return $this->hasOne(User::class, 'id', 'user_id');
+    // }
+
+        
+
 }
