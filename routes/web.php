@@ -81,6 +81,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     // look in the models 
     // then we need to compact and pass the users data
 
-    $users = User::all();
-    return view('dashboard', compact('users'));
+    // $users = User::all();
+    return view('admin.index');
 })->name('dashboard');
