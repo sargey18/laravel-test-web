@@ -5,6 +5,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +28,8 @@ Route::get('/email/verify', function () {
 })->middleware('auth')->name('verification.notice');
 
 Route::get('/', function () {
-    return view('welcome');
+    $brands = DB::table('brands')->get();
+    return view('profile.home', compact('brands'));
 });
 
 Route::get('/home', function () {
@@ -84,3 +87,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     // $users = User::all();
     return view('admin.index');
 })->name('dashboard');
+
+Route::get('/user/logout', [BrandController::class, 'Logout'])->name('user.logout');
