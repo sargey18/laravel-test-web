@@ -13,23 +13,14 @@
 
       <div class="row content">
         <div class="col-lg-6" data-aos="fade-right">
-          <h2>Eum ipsam laborum deleniti velitena</h2>
-          <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave</h3>
+          <h2>{{$abouts->title}}</h2>
+          <h3>{{$abouts->short_dis}}</h3>
         </div>
         <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left">
-          <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum
-          </p>
-          <ul>
-            <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequa</li>
-            <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-            <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</li>
-          </ul>
+
+          
           <p class="font-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
+            {{$abouts->long_dis}}
           </p>
         </div>
       </div>
@@ -134,25 +125,20 @@
 
       <div class="row" data-aos="fade-up">
         <div class="col-lg-12 d-flex justify-content-center">
-          <ul id="portfolio-flters">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-card">Card</li>
-            <li data-filter=".filter-web">Web</li>
-          </ul>
+
         </div>
       </div>
 
       <div class="row portfolio-container" data-aos="fade-up">
        
-        @foreach($brands as $brand)
+        @foreach($images as $img)
         <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <img src=" {{ asset('frontend/assets/img/portfolio/portfolio-1.jpg')}}" class="img-fluid" alt="">
+          <img src=" {{ $img->image}}" class="img-fluid" alt="">
           <div class="portfolio-info">
             <h4>App 1</h4>
             <p>App</p>
-            <a href=" $brand->brand_image" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            <a href=" {{$img->image}}" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+            <a href="portfolio-details.html" class="details-link" title="More Details"></a>
           </div>
         </div>
         @endforeach

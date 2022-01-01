@@ -7,6 +7,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Models\User;
+use App\Models\Multipic;
 use Illuminate\Support\Facades\DB;
 
 
@@ -31,7 +32,9 @@ Route::get('/email/verify', function () {
 
 Route::get('/', function () {
     $brands = DB::table('brands')->get();
-    return view('profile.home', compact('brands'));
+    $abouts = DB::table('home_abouts')->first();
+    $images = Multipic::all();
+    return view('home', compact('brands', 'abouts', 'images'));
 });
 
 Route::get('/home', function () {
@@ -96,7 +99,10 @@ Route::post('/store/About', [AboutController::class, 'StoreAbout'])->name('store
 
 Route::get('/about/edit/{id}', [AboutController::class, 'EditAbout']);
 Route::post('/update/homeabout/{id}', [AboutController::class, 'UpdateAbout']);
+Route::get('/about/delete/{id}', [AboutController::class, 'DeleteAbout']);
 
+//portfolio page route 
+Route::get('/portfolio', [AboutController::class, 'Portfolio'])->name('portfolio');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
