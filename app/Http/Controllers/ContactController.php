@@ -55,6 +55,9 @@ public function ContactForm(Request $request){
     return Redirect()->route('contact')->with('success', 'Your Message send Successfully');
 }
 
-
+public function AdminMessage(){
+    $messages = ContactForm::all();
+    return view('admin.contact.message', compact('messages'));
+}
 
 }
